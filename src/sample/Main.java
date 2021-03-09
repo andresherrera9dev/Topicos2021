@@ -33,8 +33,27 @@ public class Main extends Application {
         UI_AnchorPane();
         CrearMenu();
 
-        primaryStage.setScene(new Scene(vBox_menu, 1800, 600));
-
+        Integer input=Integer.parseInt(JOptionPane.showInputDialog("Eliga una opcion:\n\t1: Hbox." +
+                "\n\t2: BorderPane.\n\t3: Gridpane\n\t4: Anchorpane\n\t5. Menus Vbox"));
+        switch (input){
+            case 1:
+                primaryStage.setScene(new Scene(obj_hBox, 1800, 600));
+                break;
+            case 2:
+                primaryStage.setScene(new Scene(obj_borderpane, 600, 700));
+                break;
+            case 3:
+                primaryStage.setScene(new Scene(obj_gridpane, 600, 700));
+                break;
+            case 4:
+                primaryStage.setScene(new Scene(obj_anchorpane, 600, 700));
+                break;
+            case 5:
+                primaryStage.setScene(new Scene(vBox_menu, 1800, 600));
+                break;
+            default:
+                break;
+        }
         primaryStage.show();
     }
     private void CrearMenu(){
@@ -43,14 +62,15 @@ public class Main extends Application {
         menCompetencial = new Menu("Competencia 1");
         menCompetencial2 = new Menu("Competencia 2");
         menCerrar = new Menu("Cerrar 1");
-        mnbPrincipal.getMenus().addAll(menCompetencial,menCompetencial2,menCerrar);
 
         mitCalcu = new MenuItem("Calculadora");
         menCompetencial.getItems().add(mitCalcu);
 
         mitSalir = new MenuItem("Salir");
-        menCompetencial.getItems().add(mitSalir);
+        mitSalir.setOnAction(actionEvent -> {System.exit(0);});
+        menCerrar.getItems().add(mitSalir);
 
+        mnbPrincipal.getMenus().addAll(menCompetencial,menCompetencial2,menCerrar);
         vBox_menu.getChildren().add(mnbPrincipal);
 
     }
