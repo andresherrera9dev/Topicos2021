@@ -90,10 +90,6 @@ public class Main extends Application {
         obj_hBox.setSpacing(10);
         obj_hBox.setPadding(new Insets( 20, 20, 20,  20));
 
-        obj_vBox = new VBox();
-        obj_vBox.getChildren().addAll(btn1, btn2, btn3);
-        obj_vBox.setSpacing(10);
-        obj_vBox.setPadding(new Insets( 20, 20, 20,  20));
     }
     private void UI_BorderPane(){
         obj_borderpane = new BorderPane();
