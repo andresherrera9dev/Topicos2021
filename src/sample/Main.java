@@ -5,21 +5,25 @@ package sample;
 import javax.swing.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    private HBox obj_hBox,vBox;
+    private HBox obj_hBox;
+    private VBox obj_vBox, vBox_menu;
     private Button btn1, btn2, btn3;
     private Button anch_btn1, anch_btn2;
     private BorderPane obj_borderpane;
     private GridPane obj_gridpane;
     private AnchorPane obj_anchorpane;
+
+    private MenuBar mnbPrincipal;
+    private Menu menCompetencial, menCompetencial2, menCerrar;
+    private MenuItem mitCalcu, mitSalir;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Proyecto de clase TAP 2021");
@@ -27,26 +31,28 @@ public class Main extends Application {
         UI_BorderPane();
         UI_GridPane();
         UI_AnchorPane();
+        CrearMenu();
 
-        Integer input=Integer.parseInt(JOptionPane.showInputDialog("Eliga una opcion:\n\t1: Hbox." +
-                "\n\t2: BorderPane.\n\t3: Gridpane\n\t4: Anchorpane"));
-        switch (input){
-            case 1:
-                primaryStage.setScene(new Scene(obj_hBox, 1800, 600));
-                break;
-            case 2:
-                primaryStage.setScene(new Scene(obj_borderpane, 600, 700));
-                break;
-            case 3:
-                primaryStage.setScene(new Scene(obj_gridpane, 600, 700));
-                break;
-            case 4:
-                primaryStage.setScene(new Scene(obj_anchorpane, 600, 700));
-                break;
-            default:
-                break;
-        }
+        primaryStage.setScene(new Scene(vBox_menu, 1800, 600));
+
         primaryStage.show();
+    }
+    private void CrearMenu(){
+        vBox_menu =new VBox();
+        mnbPrincipal = new MenuBar();
+        menCompetencial = new Menu("Competencia 1");
+        menCompetencial2 = new Menu("Competencia 2");
+        menCerrar = new Menu("Cerrar 1");
+        mnbPrincipal.getMenus().addAll(menCompetencial,menCompetencial2,menCerrar);
+
+        mitCalcu = new MenuItem("Calculadora");
+        menCompetencial.getItems().add(mitCalcu);
+
+        mitSalir = new MenuItem("Salir");
+        menCompetencial.getItems().add(mitSalir);
+
+        vBox_menu.getChildren().add(mnbPrincipal);
+
     }
     public void UI_FlowPane(){
         btn1 = new Button("Boton 1");
@@ -64,10 +70,10 @@ public class Main extends Application {
         obj_hBox.setSpacing(10);
         obj_hBox.setPadding(new Insets( 20, 20, 20,  20));
 
-        /*vBox = new HBox();
-        vBox.getChildren().addAll(btn1, btn2, btn3);
-        vBox.setPadding(new Insets( 20, 20, 20,  20));
-         */
+        obj_vBox = new VBox();
+        obj_vBox.getChildren().addAll(btn1, btn2, btn3);
+        obj_vBox.setSpacing(10);
+        obj_vBox.setPadding(new Insets( 20, 20, 20,  20));
     }
     private void UI_BorderPane(){
         obj_borderpane = new BorderPane();
